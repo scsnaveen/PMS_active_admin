@@ -1,0 +1,41 @@
+<%= form_with url: create_projects_path, local: true do |form| %>
+
+
+
+ 
+  <% if @project.errors.any? %>
+    <div id="error_explanation">
+      <h2>
+        <%= pluralize(@project.errors.count, "error") %> prohibited
+        this project from being saved:
+      </h2>
+      <ul>
+        <% @project.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class="container-md">
+    <%= form.label :project_name %><br />
+    <%= form.select :project_type, options_for_select(Project.types.map {|k,v| [k.humanize.capitalize]}) %>
+  </div>
+  <div class="container-md">
+    <%= form.label :title %><br>
+    <%= form.text_field :title %>
+  </div>
+ 
+  <div class="container-md">
+    <%= form.label :text %><br>
+    <%= form.text_area :text %>
+  </div>
+
+      <%= form.hidden_field :project_id %>
+
+  
+  <div class="container-md">
+    <%= form.submit %>
+  </div>
+   
+ 
+<% end %>

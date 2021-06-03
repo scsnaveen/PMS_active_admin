@@ -1,0 +1,14 @@
+
+
+<div class="default-block">
+  <h2>Your Tasks</h2>
+  <div class="line-dark"></div>
+  
+    <div class="row">
+    	<div class="col-sm-4">
+      <% @Task.where(project_id: params[:id]).each do |task, index| %>
+        <%= render partial: "task", locals: {task: task, index: index } %>
+      </div>
+    </div>
+  <% end %>
+</div>

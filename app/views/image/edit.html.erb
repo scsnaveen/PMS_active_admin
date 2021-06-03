@@ -1,0 +1,9 @@
+<h1>Image#edit</h1>
+<p>Find me in app/views/image/edit.html.erb</p>
+<% if current_user.image_was.present? %>
+    <%= image_tag(current_user.image.url) %>
+    <%= label :remove_image do %>
+      <%= check_box :remove_image %>
+    <% end %>
+  <% end %>
+<image src="<%=(url_for(@user.image))%>">

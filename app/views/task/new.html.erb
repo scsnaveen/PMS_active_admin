@@ -1,0 +1,19 @@
+<div class="default-block">
+  <h2>New Task</h2>
+  <div class="line-dark"></div>
+    <%= form_with(url: create_task_path(project_id: @project.id), html: { multipart: true }, action: "post", local: true) do |f| %>
+  <div class="container-md input-group ">
+  <div class="input-group-prepend container-md">
+    <span class="input-group-text" id="">Name & Description</span>
+  </div>
+   <div class="container-md">
+          <%= f.text_field :name, class: "form-control" %>
+          <%= f.text_field :description, class: "form-control"%>
+    </div>
+    
+   <div class="container-md">
+      <%= f.submit %>
+    </div>
+    </div>
+      <% end %>
+  </div>

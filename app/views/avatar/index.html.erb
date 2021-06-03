@@ -1,0 +1,25 @@
+<% if !flash[:notice].blank? %>
+   <div class = "alert alert-info">
+      <%= flash[:notice] %>
+   </div>
+<% end %>
+<table class = "table table-bordered ">
+   <thead>.
+      <tr>
+         <th>Download Link</th>
+         
+      </tr>
+   </thead>
+   
+   <tbody>
+      <% Avatar.where(project_id: params[:id]).each do |avatar| %>
+         
+         <tr>
+            <td><%= link_to "Download Avatar", avatar.attachment_url,:class =>'links' %></td>
+            
+         </tr>
+         
+      <% end %>
+   </tbody>   
+</table>
+

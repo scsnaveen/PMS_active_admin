@@ -1,0 +1,38 @@
+<div class="container">
+ <strong>Project Type:</strong>
+  <%=@project.project_type%>
+ </div>
+  <div class="container">
+    <strong>Title:</strong>
+  <%= @project.title %>
+  </div>
+ 
+  <div class="container">
+    <strong>Description:</strong>
+  <%= @project.text %>
+  </div>
+<div class="col-xs-8 container">
+<h2 class="sub-header">Tasks</h2>
+  <div class="table-responsive container">
+            <table class="table table-striped">
+                <tr>
+               <%= render template: "task/show"%>
+                </tr>
+                 <tr>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+  <div class="col-xs-8 container">
+          <h2 class="sub-header">Attachments</h2>
+          <div class="table-responsive container">
+            <table class="table table-striped">
+                <tr>
+                  <%= render template: "avatar/index"%>
+                </tr>
+              </tbody>
+            </table>
+              <%= link_to "New Attachment", new_project_avatar_path(@project), class: "btn btn-primary" %>
+          <br><br><br>
+</div>
+</div>

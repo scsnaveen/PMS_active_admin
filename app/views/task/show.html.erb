@@ -1,0 +1,26 @@
+<div class='container-fluid'>
+      <p id="notice"><%= notice %></p>
+        <div class='col form-group'>
+          <h3 class=''>Tasks</h3>
+          <table class="table table-bordered">
+            <thead  class="thead-light">
+              <tr>
+                <th>Name</th>
+                <th>Description</th>
+                
+              </tr>
+            </thead>
+            <tbody>
+              <% Task.where(project_id: params[:id]).each do |task| %>
+                <tr>
+                   <td><%= task.name %></td>
+                   <td><%= task.description %></td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+          <br>
+          </div> 
+      <%= link_to "New Task", new_project_task_path(@project), class: "btn btn-primary" %>
+         
+        </div>

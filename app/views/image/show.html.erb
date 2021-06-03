@@ -1,0 +1,11 @@
+<div id="images">
+    <div class="painting">
+   <% if  @user.image? %>
+   <image src="<%=(url_for(@user.image))%>">
+	<%end%>
+      <div class="actions">
+        <%= link_to "edit", image_edit_path %> |
+      </div>
+    </div>
+  <div class="clear"></div>
+</div> 

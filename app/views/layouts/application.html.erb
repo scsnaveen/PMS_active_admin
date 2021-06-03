@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Myapp1</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    
+  </head>
+
+  <body>
+     <%= nav_bar  brand: "SYKAM" do %>
+   <% if user_signed_in? %>
+
+     <%= menu_group pull: :right do %>
+        <%= menu_item "Dashboard", rails_admin_path , :class => 'navbar-link fa fa-paper-plane' %>
+        <%= menu_item "Project", project_path, :class => 'navbar-link' %>
+        <%= menu_item current_user.uname,edit_user_registration_path, :class =>'navbar-link ' %>
+
+       <%= menu_item "Logout", destroy_user_session_path, :method=> :delete %>
+        <% end %>
+    <% else %>
+        <%= menu_group pull: :right do %>
+            <%= menu_item "Sign Up", new_user_registration_path, :class => 'navbar-link '  %>
+            <%= menu_item "Login", new_user_session_path, :class => 'navbar-link'  %>
+        <% end %>
+    <% end %>
+   <% end %>
+
+  <div class="container">
+   <% if notice %>
+  <p class="alert alert-success"><%= notice %></p>
+    <% end %>
+  <% if alert %>
+   <p class="alert alert-danger"><%= alert %></p>
+  <% end %>
+  </div>
+    <%= yield %>
+   
+ </div>
+  </body>
+  <footer class="footer">
+     <div class="footer-copyright text-center py-3">© 2020 Copyright:
+     <a href="https://sykam.org/"> Sykam.org</a>
+    </div>
+   </footer>
+</html>
