@@ -62,8 +62,9 @@ gem "twitter-bootstrap-rails"
 # gem 'sassc-rails', '>= 2.1.0'
  gem 'carrierwave', '~> 2.0'
  gem "mini_magick"
-gem 'rails_admin', '~> 2.0'
+# gem 'rails_admin', '~> 2.0'
 gem 'cancancan'
 gem "font-awesome-rails"
 gem 'devise_google_authenticator', :path => 'lib/devise_google_authenticator', :require => 'devise_google_authenticator'
+gem 'activeadmin'
 

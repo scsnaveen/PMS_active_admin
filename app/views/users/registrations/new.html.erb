@@ -1,69 +1,76 @@
-  
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
-  <div class="container card-header">
-    <h2>Sign up</h2>
+<div class="container">
+      <div id="login-row" class="row justify-content-center align-items-center">
+          <div id="login-column" class="col-md-6">
+              <div id="login-box" class="col-md-8">
+                <%= form_for(resource, as: resource_name, url: registration_path(resource_name),:html=> {:multipart=>true}) do |f| %>
+				<%= render "users/shared/error_messages", resource: resource %>
+						<div class="field form-group">
+							<%= f.text_field :name,autofocus: true,class:"form-control",placeholder:"First name"%>
+					</div>
+						<div class="field form-group">
+							<%= f.text_field :lastname,class:"form-control",placeholder:"Last name"%>
+						</div>
+				<div class="field form-group">
+					<%= f.text_field :uname,class:"form-control",placeholder:"User name"%>
+				</div>
+
+				<div class="field form-group">
+					<% f.label :email %>
+					<%= f.email_field :email,class:"form-control",placeholder:"Email",  autocomplete: "email" %>
+				</div>
+
+				<div class="field form-group">
+					<% f.label :password %>
+					<% if @minimum_password_length %>
+					<em>(<%= @minimum_password_length %> characters minimum)</em>
+					<% end %>
+					<%= f.password_field :password, autocomplete: "new-password",class:"form-control",placeholder:"Password" %>
+				</div>
+
+				<div class="field form-group">
+					<% f.label :password_confirmation %>
+					<%= f.password_field :password_confirmation, autocomplete: "new-password",class:"form-control",placeholder:"Confirm password" %>
+				</div>
+
+				<div class="field form-group">
+					<%= f.date_select :date_of_birth,start_year: 1995%>
+				</div>
+
+				<div class="field form-group">
+					<%= f.text_field :phonenumber,class:"form-control",placeholder:"Phone number"%>
+				</div>
+				<div class="field form-group">
+					<%= f.label :organization %><br />
+					<%= f.select :organization_id, Organization.all.collect { |o| [ o.organization_name, o.id ] },class: 'form-control'%>
+				</div>
+				<div class=" container custom-control custom-radio custom-control-inline">
+					 <%= f.label :Gender, "Gender",class: 'custom-control-label'%>
+					<%= f.radio_button :is_female, '1' %> <%= f.label :is_female, "Female",class: 'custom-control-label'%>
+					<%= f.radio_button :is_female, '0' %> <%= f.label :is_female, "Male",class: 'custom-control-label' %>
+				 </div>
+
+				<div class="field form-group">
+					<%= f.label :Image %>
+						<%= f.file_field :attachment, class: 'form-group'%>
+					</div>
+
+				<div class="actions">
+					<%= f.submit "Sign up" %>
+				</div>
+			<% end %>
+
+			<%= render "users/shared/links" %>
+
+              </div>
+          </div>
       </div>
-  <div class="container">
-    <%= f.label :firstname , class: 'col-sm-3 control-label' %><br />
-    <%= f.text_field :name, autofocus: true, class: 'form-control'  %>
-  </div><br>
-
-  <div class="container">
-    <%= f.label :lastname, class: 'col-sm-3 control-label' %><br />
-    <%= f.text_field :lastname, autofocus: true, class: 'form-control' %>
-  </div><br>
-
-  <div class="container">
-    <%= f.label :username, class: 'col-sm-3 control-label' %><br />
-    <%= f.text_field :uname, autofocus: true, class: 'form-control' %>
-  </div><br>
-
-  <div class="container">
-    <%= f.label :phonenumber, class: 'col-sm-3 control-label' %><br />
-    <%= f.text_field :phonenumber, autofocus: true, class: 'form-control' %>
-  </div><br>
-
-  <div class="container">
-    <%= f.label :email, class: 'col-sm-3 control-label' %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email", class: 'form-control'  %>
-  </div><br>
-
-  <div class="container">
-    <%= f.label :password, class: 'col-sm-3 control-label' %>
-    <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> characters minimum)</em>
-    <% end %><br />
-    <%= f.password_field :password, autocomplete: "new-password", class: 'form-control' %>
-  </div><br>
-
-  <div class="container">
-    <%= f.label :password_confirmation, class: 'col-sm-3 control-label' %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password", class: 'form-control' %>
-  </div><br>
-  
-    <div class=" container custom-control custom-radio custom-control-inline">
-     <%= f.label :Gender, "Gender",class: 'custom-control-label'%>
-    <%= f.radio_button :is_female, '1' %> <%= f.label :is_female, "Female",class: 'custom-control-label'%>
-    <%= f.radio_button :is_female, '0' %> <%= f.label :is_female, "Male",class: 'custom-control-label' %>
-   </div><br />
-  <div class=" container custom-select custom-select-lg mb-3">
-      <%= f.label :date_of_birth %><br>
-        <%= f.date_select :date_of_birth,start_year: 1995  %>
-  </div><br />
-  <div class="container">
-    <%= f.label :organization %><br />
-    <%= f.select :organization_id, Organization.all.collect { |o| [ o.organization_name, o.id ] },class: 'form-control'%>  
-  </div><br>
-    <div class="container">
-  <%= f.label :Image %>
-    <%= f.file_field :attachment, class: 'form-group'%>
   </div>
-  <div class="actions">
-    <%= f.submit "Sign up", class: "btn btn-primary center-block" %>
-  </div>
-  <br>
-  <br>
-  
 
-<% end %>
+<style type="text/css">
+body{
+background-size: cover;
+background-repeat: no-repeat;
+height: 100%;
+font-family: 'Numans', sans-serif;
+}
+</style>

@@ -2,13 +2,14 @@ class TaskController < ApplicationController
   def create
 	@project = Project.find(params[:project_id])
     @task = @project.tasks.create(task_params)
-    redirect_to projects_task_path(@project)
+    redirect_to project_path
 
   end
   def index
   	@tasks = Task.where(project_id: params[:project_id])
   end
-  def new 
+  def new
+    puts  params[:project_id].inspect
   	@project = Project.find(params[:project_id])
   	@task = Task.new
   end

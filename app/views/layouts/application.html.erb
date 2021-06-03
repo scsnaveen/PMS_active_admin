@@ -15,7 +15,7 @@
    <% if user_signed_in? %>
 
      <%= menu_group pull: :right do %>
-        <%= menu_item "Dashboard", rails_admin_path , :class => 'navbar-link fa fa-paper-plane' %>
+        <%#= menu_item "Dashboard", rails_admin_path , :class => 'navbar-link fa fa-paper-plane' %>
         <%= menu_item "Project", project_path, :class => 'navbar-link' %>
         <%= menu_item current_user.uname,edit_user_registration_path, :class =>'navbar-link ' %>
 
@@ -39,7 +39,6 @@
   </div>
     <%= yield %>
    
- </div>
   </body>
   <footer class="footer">
      <div class="footer-copyright text-center py-3">© 2020 Copyright:

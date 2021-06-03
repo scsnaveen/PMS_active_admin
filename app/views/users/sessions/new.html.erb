@@ -1,49 +1,29 @@
-<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-<form class="form-horizontal">
-  
-  <div class="container wrapper ">
-  <div class="d-flex justify-content-center">
-    <div class="card">
-      <div class="card-header">
-        <h3>Sign In</h3>
-      </div>
-      <div class="card-body">
-        <form>
-          <div class="input-group-prepend form-group">
-            <div class="input-group-prepend">
-<!--               <span class="input-group-text"><i class="fas fa-user"></i></span>
- -->            </div>
-            <%= f.label :email %>
-        <%= f.email_field :email, autofocus: true, autocomplete: 'email', class: 'form-control' %>        
+  <div class="container">
+      <div id="login-row" class="row justify-content-center align-items-center">
+          <div id="login-column" class="col-md-6">
+              <div id="login-box" class="col-md-8">
+                <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+                  <h3 class="text-center text-info">Login</h3>
+                  <div class="form-group">
+                      <label for="email" class="text-info">Email:</label><br>
+                      <%= f.email_field :email, autofocus: true, autocomplete: "email",class: "form-control" %>
+                  </div>
+                  <div class="form-group">
+                      <label for="password" class="text-info">Password:</label><br>
+                      <%= f.password_field :password, autocomplete: "current-password",class: "form-control" %>
+                  </div>
+                    <% if devise_mapping.rememberable? %>
+                  <div class="form-group">
+                      <%= f.check_box :remember_me ,class: "form-check-input"%>
+                      <label for="remember-me" class="text-info"><span>Remember me</span></label><br>
+                        <% end %>
+                      <%= f.submit "Log in",class: "btn btn-primary btn-lg btn-block login-button" %>
+                  </div>
+                  <div id="link" class="text-left">
+                      <%= render "users/shared/links" %>
+                  </div>
+                  <% end %>
+              </div>
           </div>
-          <div class=" form-group">
-            <div class="input-group-prepend">
-<!--               <span class="input-group-text"><i class="fas fa-key"></i></span>
- -->            </div>
-            <%= f.label :password %>
-            <%= f.password_field :password, autocomplete: 'current-password', class: 'form-control' %>
-          </div>
-          <% if devise_mapping.rememberable? %>
-             <div class=" remember form-group">
-             <%= f.check_box :remember_me, class: 'input-group-prepend ' %>
-             <%= f.label :remember_me, class: 'input-group-prepend ' do %>
-             <%= resource.class.human_attribute_name('remember_me') %>
-             <% end %>
-            </div>
-           <% end %>
-          <div class="form-group">
-           <%= f.submit "Log in", class: "btn float-right login_btn" %>
-          </div>
-        </form>
       </div>
-      <div class="card-footer">
-     <%= render "users/shared/links" %>
-      </div>
-    </div>
   </div>
-</div>
-</form>
-<% end %>
-
-  
-

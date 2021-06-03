@@ -3,33 +3,26 @@
 class Ability
   include CanCan::Ability
 
-  def initialize(user)
+  def initialize(admin_user)
+    # can :manage, :all
+    # can :read, :dashboard 
+    # can :read,:all
     # Define abilities for the passed in user here. For example:
     #
     #   user ||= User.new # guest user (not logged in)
     # can :read, :all
-      if user.role == "superadmin"
+      if admin_user.role == "Super Admin"
           can :manage, :all
-      elsif user.role == "admin"
+          can :read, :dashboard 
+          can :read,:all
+      elsif admin_user.role == "Admin"
          can :read, :dashboard 
          can :read,:all
-         read_models =[]
-         user.read_model.each_with_index{|model,index| read_models[index] = Object.const_get model}
-          can :read,read_models
-          can :access, :rails_admin 
-          can [:admin_list,:user_detail], User    
-          create_models = []
-          # create_models = user.create_model.select {|model| Object.const_get model}
-          user.create_model.each_with_index {|model,index| create_models[index] = Object.const_get model}
-          can :create,create_models
-          can [:create,:destroy],[Task,Avatar]
-        #   cannot :destroy, Organization
-      elsif user.role == "employee"
+         can :update,Project
+      else
         can :read, :dashboard 
-          can :access, :rails_admin 
-          can :read,:all
-          can :admin_list,User
-       end
+        can :read,:all
+      end
       
    
     # The first argument to `can` is the action you are giving the user

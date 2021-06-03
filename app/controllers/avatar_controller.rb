@@ -4,22 +4,15 @@ class AvatarController < ApplicationController
   end
 
   def new
+    @project = Project.find(params[:project_id])
   	@avatar = Avatar.new
   end
 
   def create
-  	#  @project = Project.find(params[:project_id])
-   #  @avatar = Project.create(avatar_params).inspect
-   # if  @avatar.save
-   # 	redirect_to projects_path
-   # else
-   # 	render "new"
-   # end
    @project = Project.find(params[:project_id])
     @avatar = @project.avatar.new(avatar_params)
     @avatar.save
     redirect_to project_path(@project)
-    # redirect_to projects_avatar_path(@project)
   end
   # def show
   # 	    @project = Project.find(params[:project_id])

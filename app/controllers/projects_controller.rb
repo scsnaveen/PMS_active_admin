@@ -4,7 +4,6 @@ class ProjectsController < ApplicationController
     @projects = Project.all
   end
  def show
- 	
  	@project = Project.find(params[:id])
  end
    def new
@@ -14,13 +13,8 @@ class ProjectsController < ApplicationController
   	@project = Project.new(project_params)
     @project.user_id = current_user.id
     @project.project_type = params[:project_type]
-    puts @project.inspect
-    # puts 
-
-   
       if @project.save
-       redirect_to projects_path
-
+       redirect_to projects_path(:id=>@project.id)
       else
         render :new 
       end

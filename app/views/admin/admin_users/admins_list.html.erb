@@ -1,0 +1,28 @@
+<div class='container-fluid'>
+      <p id="notice"><%= notice %></p>
+        <div class='col form-group'>
+          <h3 class=''>Admin</h3>
+          <table class="table table-bordered">
+            <thead  class="thead-light">
+              <tr>
+               <th>Id</th>
+                <th>Email</th>
+                <th>Role</th>
+             </tr>
+            </thead>
+            <tbody>
+              <% AdminUser.all.each do |u| %>
+                <% if u.role.to_s == 'Admin' %>
+                  <tr>
+                   <td><%= u.id %></td>
+                   <td><%= u.email %></td>
+                   <td><%= u.role %></td>
+                  </tr>
+                <% end %>
+              <% end %>
+            </tbody>
+          </table>
+          <br>
+          </div> 
+         
+        </div>
