@@ -6,6 +6,8 @@ ActiveAdmin.register Project do
   # Uncomment all parameters which should be permitted for assignment
   #
   permit_params :user_id, :project_type, :title, :text
+  filter :user_id
+
   #
   # or
   #

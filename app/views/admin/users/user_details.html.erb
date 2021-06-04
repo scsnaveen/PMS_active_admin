@@ -1,0 +1,30 @@
+<div class='container-fluid'>
+      <p id="notice"><%= notice %></p>
+        <div class='col form-group'>
+          <h3 class=''>User detail</h3>
+          <table class="table table-bordered">
+            <thead  class="thead-light">
+              <tr>
+               <th>Id</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Project Count</th>
+                <th>Organization</th>
+                <th>SignIn IP</th>
+             </tr>
+            </thead>
+            <tbody>
+                <tr>
+                   <td><%= @user.id %></td>
+                   <td><%= @user.name %></td>
+                   <td><%= @user.email %></td>
+                   <td><%= @user.projects.count %></td>
+                   <td><%= @user.organization.organization_name %></td>
+                   <td><%= @user.current_sign_in_ip%></td>
+                </tr>
+            </tbody>
+          </table>
+          <br>
+          </div> 
+         
+        </div>

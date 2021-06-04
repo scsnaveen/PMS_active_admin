@@ -1,4 +1,16 @@
 # frozen_string_literal: true
+# require 'active_admin/main_controller'
+
+# module ActiveAdmin
+
+#     class MainController < ActiveAdmin::ApplicationController
+#         # rescue for the admins who cannot access  
+#         rescue_from CanCan::AccessDenied do |exception|
+#             redirect_to active_admin.dashboard_path
+#             flash[:alert] = 'Access denied.'
+#         end
+#     end
+# end
 
 class Ability
   include CanCan::Ability
@@ -13,15 +25,20 @@ class Ability
     # can :read, :all
       if admin_user.role == "Super Admin"
           can :manage, :all
-          can :read, :dashboard 
-          can :read,:all
       elsif admin_user.role == "Admin"
-         can :read, :dashboard 
-         can :read,:all
-         can :update,Project
+         can :read,[Project]
+#         can :create, AdminUser.create_models do |arr|
+#           puts arr.inspect
+#   arr.create_model(admin_user.id).present? { |el| puts el.inspect can?(:create, el) }
+# end
+
+        can :create,AdminUser.create_model_array(admin_user.id)
+        can :read,AdminUser.read_model_array(admin_user.id)
+        can :update,AdminUser.update_model_array(admin_user.id)
+        can :destroy,AdminUser.delete_model_array(admin_user.id)
       else
+        # can :read,[Project]
         can :read, :dashboard 
-        can :read,:all
       end
       
    
