@@ -28,10 +28,10 @@ ActiveAdmin.register AdminUser do
     f.inputs do
       # f.inputs
       f.input :role, as: :select, collection: ['Super Admin', 'Admin'] 
-      f.input :create_model, as: :select, multiple: true, collection: ['Project','Task','Avatar'] 
-      f.input :update_model, as: :select, multiple: true, collection: ['Project','Task','Avatar'] 
-      f.input :read_model, as: :select, multiple: true, collection: ['Project','Task','Avatar'] 
-      f.input :delete_model, as: :select, multiple: true, collection: ['Project','Task','Avatar'] 
+      f.input :create_model, as: :select, multiple: true, collection: ['Project','Task','Avatar','Organization'] 
+      f.input :update_model, as: :select, multiple: true, collection: ['Project','Task','Avatar','Organization'] 
+      f.input :read_model, as: :select, multiple: true, collection: ['Project','Task','Avatar','Organization'] 
+      f.input :delete_model, as: :select, multiple: true, collection: ['Project','Task','Avatar','Organization'] 
     end
     f.actions
   end
